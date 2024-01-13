@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>https://ology.github.io/Perl-Algorithmic-Music/</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta name="generator" content="pod2s5 0.09" />
+<meta name="generator" content="S5" />
+<meta name="version" content="S5 1.1" />
+<meta name="presdate" content="Wed Jul 12 2023" />
+<meta name="author" content="Gene Boggs" />
+<meta name="company" content="Gene Boggs" />
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<link rel="stylesheet" href="ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/default/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+
+<!-- embedded styles -->
+<style type="text/css" media="all">
+.imgcon {width: 525px; margin: 0 auto; padding: 0; text-align: center;}
+#anim {width: 270px; height: 320px; position: relative; margin-top: 0.5em;}
+#anim img {position: absolute; top: 42px; left: 24px;}
+img#me01 {top: 0; left: 0;}
+img#me02 {left: 23px;}
+img#me04 {top: 44px;}
+img#me05 {top: 43px;left: 36px;}
+</style>
+<!-- S5 JS -->
+<script src="ui/default/slides.js" type="text/javascript"></script>
+<!--
+   tom AT cpan.org:
+   this will not work, it's not contained
+   in the downloadable S5
+   <script src="/mint/?js" type="text/javascript"></script></head>
+-->
+<body>
+
+<div class="layout">
+
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header"></div>
+<div id="footer">
+<h1>Toronto, ON &#8226; Wed Jul 12 2023</h1>
+<h2>https://ology.github.io/Perl-Algorithmic-Music/</h2></div>
+</div><div class="slide">
+<h1>Algorithmic Music with Perl
+
+</h1><p><img src="https://ology.net/images/perl-gene.jpg" />
+ <a href="https://github.com/ology">Gene Boggs</a>
+
+</p><audio controls><source type="audio/mp3" src="audio/Eno-2_2.mp3"></audio>
+<br>
+<span style="font-size: medium;"><a href="http://en.wikipedia.org/wiki/Brian+Eno">Brian Eno</a> - excerpt from "Music For Airports"</span>
+
+<p><a href="https://tprc.to/tprc-2023-tor/">TPRC 2023</a> &#x2022; Toronto, ON
+
+</p><div class="notes">Let's talk about music!
+
+The first part will cover concepts, which I will try to whip-though, so we can get to the algorithms.
+
+If you want to follow along or reread what just happened, these slides are live at the link on the bottom of the pages. </div></div>
+<div class="slide">
+<h1>What this *is* about
+
+</h1><ul class="incremental"><li level="1"><p>Writing MIDI files
+
+</p></li><li level="1"><p>High-level, object-oriented score construction ("Audio LEGOs")
+
+</p></li><li level="1"><p>Good ol' procedural algorithms
+
+</p></li></ul class="incremental"><div class="notes">... </div></div>
+<div class="slide">
+<h1>What this is *not* about
+
+</h1><ul class="incremental"><li level="1"><p>Song or audio <i>analysis</i>
+
+</p></li><li level="1"><p><i>Real-time</i> audio or MIDI processing
+
+</p></li><li level="1"><p><i>Low-level</i> MIDI events, like note_on, note_off, or sysex messages
+
+</p></li><li level="1"><p>Artificial intelligence techniques, like generative adversarial networks
+
+</p></li><li level="1"><p>Kittens!
+
+</p></li></ul class="incremental"><div class="notes">... </div></div>
+<div class="slide">
+<h1>Sorry!
+
+</h1><p><img src="https://placekitten.com/500/500" />
+
+
+</p><div class="notes">This used to have a bunch of descriptions, types, and techniques. But it took way too long! See the OLD/ directory, in the github repo. </div></div>
+<div class="slide">
+<h1>Why Make Algorithmic Music?
+
+</h1><ul class="incremental"><li level="1"><p>Creation in and of itself!
+
+</p></li><li level="1"><p>To make fragments for a larger context - Like a symphony, or game
+
+</p></li><li level="1"><p>To satisfy curiosities - "What do juxtapositions of beat patterns sound like?"
+
+</p></li><li level="1"><p>For practice and study, with etudes and rhythms
+
+</p></li></ul class="incremental"><div class="notes">... </div></div>
+<div class="slide">
+<h1>Fundamental Questions
+
+</h1><ul class="incremental"><li level="1"><p>How do you construct a rhythm?
+
+</p></li><li level="1"><p>How do you generate pleasing harmony?
+
+</p></li><li level="1"><p>How do you make a melody?
+
+</p></li><li level="1"><p>How do you structure a tune?
+
+</p></li></ul class="incremental"><div class="notes">These are questions to answer if we want to follow traditional theory.
+
+But if we don't care about traditions, then anything goes. And MIDI is probably not your thing.
+
+For instance, the idea of phrase development itself is controversial. E.g. Brian Eno, Primus guitar solos. </div></div>
+<div class="slide">
+<h1>Task::MusicBundle Modules
+
+</h1><p>App::MusicTools Csound Guitar::Scale MIDI Music::Bassline::Generate MIDI::Chord::Guitar <a href="https://metacpan.org/dist/MIDI-Drummer-Tiny">MIDI::Drummer::Tiny</a> MIDI::Morph MIDI::Pitch MIDI::Praxis::Variation MIDI::Simple::Drummer MIDI::SoundFont MIDI::Tools MIDI::Trans MIDI::Tweaks <a href="https://metacpan.org/dist/MIDI-Util">MIDI::Util</a> Music::AtonalUtil Music::Cadence Music::Canon Music::ChordBot Music::Chord::Namer <a href="https://metacpan.org/dist/Music-Chord-Note">Music::Chord::Note</a> Music::Chord::Positions Music::Chord::Progression Music::Chord::Progression::Transform Music::Duration <a href="https://metacpan.org/dist/Music-Duration-Partition">Music::Duration::Partition</a> Music::Gestalt Music::Guidonian Music::Harmonics Music::MelodicDevice::Inversion Music::MelodicDevice::Transposition Music::MelodicDevice::Ornamentation Music::NeoRiemannianTonnetz Music::Note Music::Note::Frequency Music::Note::Role::Operators Music::PitchNum Music::RecRhythm Music::RhythmSet Music::ScaleNote <a href="https://metacpan.org/dist/Music-Scales">Music::Scales</a> Music::Tempo Music::Tension Music::ToRoman Music::VoiceGen Music::Voss Text::Chord::Piano
+
+</p><div class="notes">Linked modules are those mentioned in this presentation. </div></div>
+<div class="slide">
+<h1>Basic Algorithms 1 of 2
+
+</h1><p>&#x2022; <b>Setup, Sync, & Write</b>
+
+</p><pre>use MIDI::Util qw(setup_score);
+
+my $score = setup_score();  # Default piano, volume, bpm, etc
+
+$score->synch(
+  sub { bass($score) },
+  sub { treble($score) },
+);
+
+$score->write_score("$0.mid"); </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Basic Algorithms 2 of 2
+
+</h1><pre>sub bass {
+  my ($score) = @_;
+
+  for my $note (qw(C3 E3 C3 G3)) {  # &lt;- Static notes
+    $score->n('wn', $note);
+  }
+}
+
+sub treble {
+  my ($score) = @_;
+
+  for my $note (qw(E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E4 D4 D4)) {
+    $score->n('qn', $note);
+  }
+} </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Audio Example 1
+
+</h1><p></p>
+<audio controls><source type="audio/mp3" src="audio/1-otj.mp3"></audio>
+
+<pre>> timidity -c timidity.cfg -A10a code/2-random.pl.mid -Ow -o - \
+  | ffmpeg -i - -acodec libmp3lame -ab 64k audio/2-random.mp3 </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Basic Algorithms 1 of 3
+
+</h1><p>&#x2022; <b>Use random pitches instead of static</b>
+
+</p><pre>use MIDI::Util qw(setup_score set_chan_patch); # New import
+use Music::Scales qw(get_scale_MIDI);          # New module
+
+my $score = setup_score(bpm => 120);           # New arg
+
+$score->synch(
+  sub { bass($score) },
+  sub { treble($score) },
+) for 1 .. 4;                                  # Loop
+
+$score->write_score("$0.mid"); </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Basic Algorithms 2 of 3
+
+</h1><pre>sub bass {
+  my ($score) = @_;
+
+  set_chan_patch($score, 0, 35);       # Fretless on channel 0
+
+  my @pitches = get_scale_MIDI('C', 2, 'pentatonic');
+
+  for my $n (1 .. 4) {
+    my $pitch = $pitches[int rand @pitches];  # Random pitch
+    $score->n('hn', $pitch);                  # Add note to score
+  }
+} </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Basic Algorithms 3 of 3
+
+</h1><pre>sub treble {
+  my ($score) = @_;
+
+  set_chan_patch($score, 1, 0);        # Piano on ch 1
+
+  my @pitches = (
+    get_scale_MIDI('C', 4, 'major'),
+    get_scale_MIDI('C', 5, 'major'),   # &lt;- 2 octaves
+  );
+
+  for my $n (1 .. 4) {
+    my $pitch = $pitches[int rand @pitches];
+    $score->n('qn', $pitch);
+  }
+} </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Audio Example 2
+
+</h1><p></p>
+<audio controls><source type="audio/mp3" src="audio/2-random.mp3"></audio>
+
+<div class="notes">... </div></div>
+<div class="slide">
+<h1>Basic Algorithms 1 of 2
+
+</h1><p>&#x2022; <b>Play a list of named chords held for a whole note each</b>
+
+</p><pre>use MIDI::Util qw(setup_score midi_format);  # New import
+use Music::Scales qw(get_scale_MIDI);
+use Music::Chord::Note ();                   # New module
+
+my $score = setup_score();
+
+$score->synch(
+  sub { chords($score) },
+  #sub { treble($score) },                   # YMMV!
+);
+
+$score->write_score("$0.mid"); </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Basic Algorithms 2 of 2
+
+</h1><pre>sub chords {
+  my ($score) = @_;
+
+  my $mcn = Music::Chord::Note->new;
+
+  for my $named (qw(Cm7 F7 BbM7 EbM7 Adim7 D7 Gm)) {
+    my @chord = $mcn->chord_with_octave($named, 4);
+
+    @chord = midi_format(@chord);
+    # [ C4 Ds4 G4 As4 ], ... [ G4 As4 D5 ], etc.
+
+    $score->n('wn', @chord);
+  }
+} </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Audio Example 3
+
+</h1><p></p>
+<audio controls><source type="audio/mp3" src="audio/3-chords-1.mp3"></audio>
+<p></p>
+<audio controls><source type="audio/mp3" src="audio/3-chords-2.mp3"></audio>
+
+<div class="notes">... </div></div>
+<div class="slide">
+<h1>Groove-Tool
+
+</h1><ul class="incremental"><li level="1"><p>Generate combinatorial rhythmic patterns
+
+</p></li><li level="1"><p>Produce a randomized, figured bass line
+
+</p></li><li level="1"><p>morbo groovetool.pl  # <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a>
+
+</p></li></ul class="incremental"><div class="notes">... </div></div>
+<div class="slide">
+<h1>Figured Bass Part 1 of 2
+
+</h1><p>&#x2022; <b>Phrase generator for rhythmic motifs</b>
+
+</p><pre>my $phrase = Music::Duration::Partition->new(
+  size    => 3,                   # Number of beats to render
+  pool    => [qw(hn dqn qn en)],
+  weights => [   1, 1,  2, 2  ],  # Optional
+  groups  => [   1, 1,  1, 2  ],  # Optional
+);
+
+my @motifs = $phrase->motifs(2); </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Figured Bass Part 2 of 2
+
+</h1><pre>my @pitches = get_scale_MIDI($note, $octave, $scale);
+
+my $voice = Music::VoiceGen->new(
+  pitches   => \@pitches,
+  intervals => [qw/-4 -3 -2 2 3 4/],  # Allowed interval jumps
+);
+
+# main phrase voices
+my @voices1 = map { $voice->rand } $motifs[0]->@*;
+
+# ... more code ...
+
+my @voices2 = map { $voice->rand } $motifs[1]->@*; </pre><div class="notes">Music::VoiceGen module by Jeremy Mates (AKA thrig) - I know you're out there! </div></div>
+<div class="slide">
+<h1>Links
+
+</h1><p>This Slideshow is
+<a href="https://github.com/ology/Perl-Algorithmic-Music">on GitHub</a>
+(and <a href="https://metacpan.org/dist/Pod-S5">made with S5</a>)
+
+</p><p><a href="https://github.com/ology/MIDI-Perl-HOWTO/wiki">Perl Algorithmic Composition Tutorial</a>
+
+</p><p>The <a href="irc://irc.perl.org:6667/#perl-music">#perl-music</a> channel on irc.perl.org
+
+</p><p>The <a href="https://github.com/ology/Groove-Tool">Groove-Tool</a>,
+<a href="https://github.com/ology/Rock-Tool">Rock-Tool</a> and
+<a href="https://github.com/ology/Jazz-Tool">Jazz-Tool</a> on GitHub
+
+</p><p>Shameless plug: My <a href="https://ology.net/XI/">latest album "XI"</a> - youtube, spotify, apple music, etc.
+and includes the partially algorithmic tune
+"<a href="https://www.youtube.com/watch?v=dhXMhaMcgag">Permutational</a>"
+- Check it out!
+
+</p></div></body></html>

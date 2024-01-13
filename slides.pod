@@ -1,0 +1,493 @@
+=head1 Algorithmic Music with Perl
+
+G<https://ology.net/images/perl-gene.jpg> L<Gene Boggs|https://github.com/ology>
+
+=begin html
+
+<audio controls><source type="audio/mp3" src="audio/Eno-2_2.mp3"></audio>
+<br>
+<span style="font-size: medium;"><a href="http://en.wikipedia.org/wiki/Brian+Eno">Brian Eno</a> - excerpt from "Music For Airports"</span>
+
+=end html
+
+L<TPRC 2023|https://tprc.to/tprc-2023-tor/> &#x2022; Toronto, ON
+
+=begin note
+
+Let's talk about music!
+
+The first part will cover concepts, which I will try to whip-though, so we can get to the algorithms.
+
+If you want to follow along or reread what just happened, these slides are live at the link on the bottom of the pages.
+
+=end note
+
+=head1 What this *is* about
+
+=over
+
+=item *
+
+Writing MIDI files
+
+=item *
+
+High-level, object-oriented score construction ("Audio LEGOs")
+
+=item *
+
+Good ol' procedural algorithms
+
+=back
+
+=begin note
+
+...
+
+=end note
+
+=head1 What this is *not* about
+
+=over
+
+=item *
+
+Song or audio I<analysis>
+
+=item *
+
+I<Real-time> audio or MIDI processing
+
+=item *
+
+I<Low-level> MIDI events, like note_on, note_off, or sysex messages
+
+=item *
+
+Artificial intelligence techniques, like generative adversarial networks
+
+=item *
+
+Kittens!
+
+=back
+
+=begin note
+
+...
+
+=end note
+
+=head1 Sorry!
+
+G<https://placekitten.com/500/500>
+
+=begin note
+
+This used to have a bunch of descriptions, types, and techniques. But it took way too long! See the OLD/ directory, in the github repo.
+
+=end note
+
+=head1 Why Make Algorithmic Music?
+
+=over
+
+=item *
+
+Creation in and of itself!
+
+=item *
+
+To make fragments for a larger context - Like a symphony, or game
+
+=item *
+
+To satisfy curiosities - "What do juxtapositions of beat patterns sound like?"
+
+=item *
+
+For practice and study, with etudes and rhythms
+
+=back
+
+=begin note
+
+...
+
+=end note
+
+=head1 Fundamental Questions
+
+=over
+
+=item *
+
+How do you construct a rhythm?
+
+=item *
+
+How do you generate pleasing harmony?
+
+=item *
+
+How do you make a melody?
+
+=item *
+
+How do you structure a tune?
+
+=back
+
+=begin note
+
+These are questions to answer if we want to follow traditional theory.
+
+But if we don't care about traditions, then anything goes. And MIDI is probably not your thing.
+
+For instance, the idea of phrase development itself is controversial. E.g. Brian Eno, Primus guitar solos.
+
+=end note
+
+=head1 Task::MusicBundle Modules
+
+App::MusicTools Csound Guitar::Scale MIDI Music::Bassline::Generate MIDI::Chord::Guitar L<MIDI::Drummer::Tiny|https://metacpan.org/dist/MIDI-Drummer-Tiny> MIDI::Morph MIDI::Pitch MIDI::Praxis::Variation MIDI::Simple::Drummer MIDI::SoundFont MIDI::Tools MIDI::Trans MIDI::Tweaks L<MIDI::Util|https://metacpan.org/dist/MIDI-Util> Music::AtonalUtil Music::Cadence Music::Canon Music::ChordBot Music::Chord::Namer L<Music::Chord::Note|https://metacpan.org/dist/Music-Chord-Note> Music::Chord::Positions Music::Chord::Progression Music::Chord::Progression::Transform Music::Duration L<Music::Duration::Partition|https://metacpan.org/dist/Music-Duration-Partition> Music::Gestalt Music::Guidonian Music::Harmonics Music::MelodicDevice::Inversion Music::MelodicDevice::Transposition Music::MelodicDevice::Ornamentation Music::NeoRiemannianTonnetz Music::Note Music::Note::Frequency Music::Note::Role::Operators Music::PitchNum Music::RecRhythm Music::RhythmSet Music::ScaleNote L<Music::Scales|https://metacpan.org/dist/Music-Scales> Music::Tempo Music::Tension Music::ToRoman Music::VoiceGen Music::Voss Text::Chord::Piano
+
+=begin note
+
+Linked modules are those mentioned in this presentation.
+
+=end note
+
+=head1 Basic Algorithms 1 of 2
+
+&#x2022; B<Setup, Sync, & Write>
+
+=begin pre
+
+use MIDI::Util qw(setup_score);
+
+my $score = setup_score();  # Default piano, volume, bpm, etc
+
+$score->synch(
+  sub { bass($score) },
+  sub { treble($score) },
+);
+
+$score->write_score("$0.mid");
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Basic Algorithms 2 of 2
+
+=begin pre
+
+sub bass {
+  my ($score) = @_;
+
+  for my $note (qw(C3 E3 C3 G3)) {  # <- Static notes
+    $score->n('wn', $note);
+  }
+}
+
+sub treble {
+  my ($score) = @_;
+
+  for my $note (qw(E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E4 D4 D4)) {
+    $score->n('qn', $note);
+  }
+}
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Audio Example 1
+
+=begin html
+
+<p></p>
+<audio controls><source type="audio/mp3" src="audio/1-otj.mp3"></audio>
+
+=end html
+
+=begin pre
+
+> timidity -c timidity.cfg -A10a code/2-random.pl.mid -Ow -o - \
+  | ffmpeg -i - -acodec libmp3lame -ab 64k audio/2-random.mp3
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Basic Algorithms 1 of 3
+
+&#x2022; B<Use random pitches instead of static>
+
+=begin pre
+
+use MIDI::Util qw(setup_score set_chan_patch); # New import
+use Music::Scales qw(get_scale_MIDI);          # New module
+
+my $score = setup_score(bpm => 120);           # New arg
+
+$score->synch(
+  sub { bass($score) },
+  sub { treble($score) },
+) for 1 .. 4;                                  # Loop
+
+$score->write_score("$0.mid");
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Basic Algorithms 2 of 3
+
+=begin pre
+
+sub bass {
+  my ($score) = @_;
+
+  set_chan_patch($score, 0, 35);       # Fretless on channel 0
+
+  my @pitches = get_scale_MIDI('C', 2, 'pentatonic');
+
+  for my $n (1 .. 4) {
+    my $pitch = $pitches[int rand @pitches];  # Random pitch
+    $score->n('hn', $pitch);                  # Add note to score
+  }
+}
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Basic Algorithms 3 of 3
+
+=begin pre
+
+sub treble {
+  my ($score) = @_;
+
+  set_chan_patch($score, 1, 0);        # Piano on ch 1
+
+  my @pitches = (
+    get_scale_MIDI('C', 4, 'major'),
+    get_scale_MIDI('C', 5, 'major'),   # <- 2 octaves
+  );
+
+  for my $n (1 .. 4) {
+    my $pitch = $pitches[int rand @pitches];
+    $score->n('qn', $pitch);
+  }
+}
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Audio Example 2
+
+=begin html
+
+<p></p>
+<audio controls><source type="audio/mp3" src="audio/2-random.mp3"></audio>
+
+=end html
+
+=begin note
+
+...
+
+=end note
+
+=head1 Basic Algorithms 1 of 2
+
+&#x2022; B<Play a list of named chords held for a whole note each>
+
+=begin pre
+
+use MIDI::Util qw(setup_score midi_format);  # New import
+use Music::Scales qw(get_scale_MIDI);
+use Music::Chord::Note ();                   # New module
+
+my $score = setup_score();
+
+$score->synch(
+  sub { chords($score) },
+  #sub { treble($score) },                   # YMMV!
+);
+
+$score->write_score("$0.mid");
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Basic Algorithms 2 of 2
+
+=begin pre
+
+sub chords {
+  my ($score) = @_;
+
+  my $mcn = Music::Chord::Note->new;
+
+  for my $named (qw(Cm7 F7 BbM7 EbM7 Adim7 D7 Gm)) {
+    my @chord = $mcn->chord_with_octave($named, 4);
+
+    @chord = midi_format(@chord);
+    # [ C4 Ds4 G4 As4 ], ... [ G4 As4 D5 ], etc.
+
+    $score->n('wn', @chord);
+  }
+}
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Audio Example 3
+
+=begin html
+
+<p></p>
+<audio controls><source type="audio/mp3" src="audio/3-chords-1.mp3"></audio>
+<p></p>
+<audio controls><source type="audio/mp3" src="audio/3-chords-2.mp3"></audio>
+
+=end html
+
+=begin note
+
+...
+
+=end note
+
+=head1 Groove-Tool
+
+=over
+
+=item *
+
+Generate combinatorial rhythmic patterns
+
+=item *
+
+Produce a randomized, figured bass line
+
+=item *
+
+morbo groovetool.pl  # L<http://127.0.0.1:3000>
+
+=back
+
+=begin note
+
+...
+
+=end note
+
+=head1 Figured Bass Part 1 of 2
+
+&#x2022; B<Phrase generator for rhythmic motifs>
+
+=begin pre
+
+my $phrase = Music::Duration::Partition->new(
+  size    => 3,                   # Number of beats to render
+  pool    => [qw(hn dqn qn en)],
+  weights => [   1, 1,  2, 2  ],  # Optional
+  groups  => [   1, 1,  1, 2  ],  # Optional
+);
+
+my @motifs = $phrase->motifs(2);
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Figured Bass Part 2 of 2
+
+=begin pre
+
+my @pitches = get_scale_MIDI($note, $octave, $scale);
+
+my $voice = Music::VoiceGen->new(
+  pitches   => \@pitches,
+  intervals => [qw/-4 -3 -2 2 3 4/],  # Allowed interval jumps
+);
+
+# main phrase voices
+my @voices1 = map { $voice->rand } $motifs[0]->@*;
+
+# ... more code ...
+
+my @voices2 = map { $voice->rand } $motifs[1]->@*;
+
+=end pre
+
+=begin note
+
+Music::VoiceGen module by Jeremy Mates (AKA thrig) - I know you're out there!
+
+=end note
+
+=head1 Links
+
+This Slideshow is
+L<on GitHub|https://github.com/ology/Perl-Algorithmic-Music>
+(and L<made with S5|https://metacpan.org/dist/Pod-S5>)
+
+L<Perl Algorithmic Composition Tutorial|https://github.com/ology/MIDI-Perl-HOWTO/wiki>
+
+The L<#perl-music|irc://irc.perl.org:6667/#perl-music> channel on irc.perl.org
+
+The L<Groove-Tool|https://github.com/ology/Groove-Tool>,
+L<Rock-Tool|https://github.com/ology/Rock-Tool> and
+L<Jazz-Tool|https://github.com/ology/Jazz-Tool> on GitHub
+
+Shameless plug: My L<latest album "XI"|https://ology.net/XI/> - youtube, spotify, apple music, etc.
+and includes the partially algorithmic tune
+"L<Permutational|https://www.youtube.com/watch?v=dhXMhaMcgag>"
+- Check it out!
+
+=cut

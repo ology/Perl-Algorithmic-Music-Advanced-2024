@@ -1,0 +1,37 @@
+Phone:
+
+Set locktime to 30 min. Search settings for:
+  Lock screen ...
+    Secure lock settings
+      Auto lock when screen turns off
+        30 minutes
+
+And:
+
+> vit code/parse-notes.pl
+:!perl % slides.pod > notes.html
+
+> vit slides.pod
+:!pod2s5 % --name "https://ology.github.io/Perl-Algorithmic-Music/" --creation "Wed Jul 12 2023" --where "Toronto, ON" --company "Gene Boggs" --author "Gene Boggs" --dest '.' > /dev/null 2>&1
+
+> vit code/*.pl
+:!rm %.mid ; perl % ; timidity -c timidity.cfg -A200a %.mid
+
+Or:
+
+> perl code/parse-notes.pl slides.pod > notes.html
+
+> pod2s5 slides.pod --name "https://ology.github.io/Perl-Algorithmic-Music/" --creation "Wed Jul 12 2023" --where "Toronto, ON" --company "Gene Boggs" --author "Gene Boggs" --dest '.' > /dev/null 2>&1
+
+> rm -f code/1-otj.pl.mid ; perl code/1-otj.pl
+> rm -f audio/1-otj.mp3 ; timidity -c timidity.cfg -A10a code/1-otj.pl.mid -Ow -o - | ffmpeg -i - -acodec libmp3lame -ab 64k audio/1-otj.mp3
+
+> rm -f code/2-random.pl.mid ; perl code/2-random.pl
+> rm -f audio/2-random.mp3 ; timidity -c timidity.cfg -A10a code/2-random.pl.mid -Ow -o - | ffmpeg -i - -acodec libmp3lame -ab 64k audio/2-random.mp3
+
+> rm -f code/3-chords-1.pl.mid ; perl code/3-chords-1.pl
+> rm -f audio/3-chords-1.mp3 ; timidity -c timidity.cfg -A10a code/3-chords-1.pl.mid -Ow -o - | ffmpeg -i - -acodec libmp3lame -ab 64k audio/3-chords-1.mp3
+
+> rm -f code/3-chords-2.pl.mid ; perl code/3-chords-2.pl
+> rm -f audio/3-chords-2.mp3 ; timidity -c timidity.cfg -A10a code/3-chords-2.pl.mid -Ow -o - | ffmpeg -i - -acodec libmp3lame -ab 64k audio/3-chords-2.mp3
+
