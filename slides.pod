@@ -352,7 +352,7 @@ morbo groovetool.pl  # L<http://127.0.0.1:3000>
 
 =end note
 
-=head1 Figured Bass Part 1 of 2
+=head1 Figured Bass Part 1 of 3
 
 &#x2022; B<Phrase generator for rhythmic motifs>
 
@@ -375,7 +375,7 @@ my @motifs = $phrase->motifs(2);
 
 =end note
 
-=head1 Figured Bass Part 2 of 2
+=head1 Figured Bass Part 2 of 3
 
 =begin pre
 
@@ -389,15 +389,36 @@ my $voice = Music::VoiceGen->new(
 # main phrase voices
 my @voices1 = map { $voice->rand } $motifs[0]->@*;
 
-# ... more code ...
+=end pre
 
-my @voices2 = map { $voice->rand } $motifs[1]->@*;
+=begin note
+
+...
+
+=end note
+
+=head1 Figured Bass Part 3 of 3
+
+=begin pre
+
+for my $i (1 .. $bars) {
+    if ($i % 2) {
+        $mdp->add_to_score($self->drummer->score, $motifs[0], \@notes1);
+    }
+    else {
+        my @notes2 = map { $voice->rand } $motifs[1]->@*;
+
+        $mdp->add_to_score($self->drummer->score, $motifs[1], \@notes2);
+    }
+
+    $self->drummer->rest($self->drummer->quarter);
+}
 
 =end pre
 
 =begin note
 
-Music::VoiceGen module by Jeremy Mates (AKA thrig) - I know you're out there!
+...
 
 =end note
 
