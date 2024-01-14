@@ -116,6 +116,68 @@ For instance, the idea of phrase development itself is controversial. E.g. Brian
 
 =end note
 
+=head1 Techniques
+
+Musical Grammars
+
+=over
+
+=item *
+
+Structured sequences are created by creating a set of rules that determine which rhythms, notes, or phrases are chosen
+
+=back
+
+Constraints
+
+=over
+
+=item *
+
+A constraint solver searches for solutions, where variables are bound to values of its domain without violating any constraints
+
+=back
+
+Randomness
+
+=over
+
+=item *
+
+Random sequences may be created by choosing notes from a pool of possibilities
+
+=back
+
+Probability
+
+=over
+
+=item *
+
+Create musical sequences by changing the chances of rhythms, notes, chords, or phrases of occuring
+
+=back
+
+Stochastic processes
+
+=over
+
+=item *
+
+Described by a random probability distribution
+
+=back
+
+Evolutionary methods
+
+=over
+
+=item *
+
+Based on genetic algorithms using mutation and natural selection
+
+=back
+
 =head1 Basic Algorithms 1 of 2
 
 &#x2022; B<Setup, Sync, & Write>
