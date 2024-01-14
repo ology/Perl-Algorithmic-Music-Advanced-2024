@@ -124,7 +124,7 @@ Musical Grammars
 
 =item *
 
-Structured sequences created with a set of rules that determine rhythms, notes, or phrases
+Sequences created with a set of rules that determine rhythms, notes, or phrases
 
 =back
 
@@ -134,7 +134,7 @@ Constraints
 
 =item *
 
-A constraint solver searches for solutions, where variables are bound without violating any constraints
+A solver searches for solutions, where variables are bound without violating any constraints
 
 =back
 
@@ -156,7 +156,7 @@ Probability
 
 =item *
 
-Sequences can created by changing the chances of rhythms, notes, chords, or phrases of occuring
+Change the chances of rhythms, notes, chords, or phrases of occuring
 
 =back
 
@@ -166,7 +166,7 @@ Stochastic processes
 
 =item *
 
-Described by a random probability distribution...
+Described by a random probability distribution
 
 =back
 
