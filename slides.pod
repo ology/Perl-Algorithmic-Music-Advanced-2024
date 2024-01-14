@@ -316,6 +316,22 @@ $score->write_score('audio/example-2.mid');
 
 =end note
 
+=head1 Audio Example 2
+
+=begin html
+
+<p></p>
+<audio controls><source type="audio/mp3" src="audio/example-2.mp3"></audio>
+<p></p>
+
+=end html
+
+=begin note
+
+...
+
+=end note
+
 =head1 Groove-Tool
 
 =over
