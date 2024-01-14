@@ -164,12 +164,12 @@ print ddc \@pitches; </pre><div class="notes">... </div></div>
 </h1><pre>my @motifs = $mdp->motifs(4);
 
 for my $motif (@motifs) {
-    my @notes = map { $pitches[ int rand @pitches ] } @$motif;
+    my @voices = map { $pitches[ int rand @pitches ] } @$motif;
 
     print ddc $motif;
-    print ddc \@notes;
+    print ddc \@voices;
 
-    $mdp->add_to_score($score, $motif, \@notes);
+    $mdp->add_to_score($score, $motif, \@voices);
 }
 
 $score->write_score('audio/example-1.mid'); </pre><div class="notes">... </div></div>
@@ -180,15 +180,46 @@ $score->write_score('audio/example-1.mid'); </pre><div class="notes">... </div><
 <audio controls><source type="audio/mp3" src="audio/example-1.mp3"></audio>
 <p></p>
 
-<pre>[ 60, 62, 64, 65, 67, 69, 71 ] # &lt;- scale of pitches
-[ 'qn', 'hn', 'hn', 'hn', 'qn' ]
-[ 60, 60, 69, 69, 67 ]
-[ 'en', 'en', 'dqn', 'hn', 'en', 'dqn', 'en', 'en', 'en' ]
-[ 69, 69, 67, 67, 71, 69, 65, 60, 67 ]
-[ 'qn', 'en', 'qn', 'hn', 'qn', 'hn', 'en' ]
-[ 67, 71, 67, 62, 67, 65, 64 ]
-[ 'en', 'en', 'en', 'en', 'en', 'en', 'dqn', 'dqn', 'qn', 'en', 'en' ]
-[ 62, 60, 67, 64, 71, 71, 67, 67, 60, 62, 71 ] </pre><div class="notes">... </div></div>
+<pre>  [ 60, 62, 64, 65, 67, 69, 71 ] # &lt;- scale of pitches
+1 [ 'qn', 'hn', 'hn', 'hn', 'qn' ]
+  [ 60, 60, 69, 69, 67 ]
+2 [ 'en', 'en', 'dqn', 'hn', 'en', 'dqn', 'en', 'en', 'en' ]
+  [ 69, 69, 67, 67, 71, 69, 65, 60, 67 ]
+3 [ 'qn', 'en', 'qn', 'hn', 'qn', 'hn', 'en' ]
+  [ 67, 71, 67, 62, 67, 65, 64 ]
+4 [ 'en', 'en', 'en', 'en', 'en', 'en', 'dqn', 'dqn', 'qn', 'en', 'en' ]
+  [ 62, 60, 67, 64, 71, 71, 67, 67, 60, 62, 71 ] </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Algorithm 1 of 2
+
+</h1><pre>use MIDI::Util qw(setup_score);
+use Music::Duration::Partition ();
+use Music::Scales qw(get_scale_MIDI);
+use Music::VoiceGen ();
+
+my $score = setup_score();
+
+my $mdp = Music::Duration::Partition->new(
+    size => 8, # number of quarter-note beats (2 measures)
+    pool => [qw(hn dqn qn en)],
+);
+my @motifs = $mdp->motifs(4); </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Algorithm 2 of 2
+
+</h1><pre>my @pitches = (get_scale_MIDI('C', 4, 'major'),
+               get_scale_MIDI('C', 5, 'major'));
+my $voice = Music::VoiceGen->new(
+    pitches   => \@pitches,
+    intervals => [qw(-3 -2 -1 1 2 3)],
+);
+
+for my $motif (@motifs) {
+    my @voices = map { $voice->rand } @$motif;
+    $mdp->add_to_score($score, $motif, \@voices);
+}
+
+$score->write_score('audio/example-2.mid'); </pre><div class="notes">... </div></div>
 <div class="slide">
 <h1>Groove-Tool
 
