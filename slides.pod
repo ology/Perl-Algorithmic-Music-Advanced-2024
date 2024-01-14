@@ -144,7 +144,7 @@ Randomness
 
 =item *
 
-Random sequences can be created by choosing notes from a pool of possibilities
+Random sequences can be created by choosing from a pool of possibilities
 
 =back
 
