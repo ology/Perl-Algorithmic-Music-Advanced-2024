@@ -182,8 +182,6 @@ Based on genetic algorithms using mutation and natural selection
 
 =head1 Algorithm 1 of 2
 
-&#x2022; Phrasing
-
 =begin pre
 
 use MIDI::Util qw(setup_score);
