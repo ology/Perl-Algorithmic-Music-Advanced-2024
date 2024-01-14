@@ -60,7 +60,7 @@ I<Low-level> MIDI events, like note_on, note_off, or sysex messages
 
 =item *
 
-Artificial intelligence techniques, like generative adversarial networks
+Artificial intelligence techniques
 
 =item *
 
@@ -77,34 +77,6 @@ Kittens!
 =head1 Sorry!
 
 G<https://placekitten.com/500/500>
-
-=begin note
-
-...
-
-=end note
-
-=head1 Why Make Algorithmic Music?
-
-=over
-
-=item *
-
-Creation in and of itself!
-
-=item *
-
-To make fragments for a larger context - Like a symphony, or game
-
-=item *
-
-To satisfy curiosities - "What do juxtapositions of beat patterns sound like?"
-
-=item *
-
-For practice and study, with etudes and rhythms
-
-=back
 
 =begin note
 
@@ -141,16 +113,6 @@ These are questions to answer if we want to follow traditional theory.
 But if we don't care about traditions, then anything goes. And MIDI is probably not your thing.
 
 For instance, the idea of phrase development itself is controversial. E.g. Brian Eno, Primus guitar solos.
-
-=end note
-
-=head1 Task::MusicBundle Modules
-
-App::MusicTools Csound Guitar::Scale MIDI Music::Bassline::Generate MIDI::Chord::Guitar L<MIDI::Drummer::Tiny|https://metacpan.org/dist/MIDI-Drummer-Tiny> MIDI::Morph MIDI::Pitch MIDI::Praxis::Variation MIDI::Simple::Drummer MIDI::SoundFont MIDI::Tools MIDI::Trans MIDI::Tweaks L<MIDI::Util|https://metacpan.org/dist/MIDI-Util> Music::AtonalUtil Music::Cadence Music::Canon Music::ChordBot Music::Chord::Namer L<Music::Chord::Note|https://metacpan.org/dist/Music-Chord-Note> Music::Chord::Positions Music::Chord::Progression Music::Chord::Progression::Transform Music::Duration L<Music::Duration::Partition|https://metacpan.org/dist/Music-Duration-Partition> Music::Gestalt Music::Guidonian Music::Harmonics Music::MelodicDevice::Inversion Music::MelodicDevice::Transposition Music::MelodicDevice::Ornamentation Music::NeoRiemannianTonnetz Music::Note Music::Note::Frequency Music::Note::Role::Operators Music::PitchNum Music::RecRhythm Music::RhythmSet Music::ScaleNote L<Music::Scales|https://metacpan.org/dist/Music-Scales> Music::Tempo Music::Tension Music::ToRoman Music::VoiceGen Music::Voss Text::Chord::Piano
-
-=begin note
-
-Linked modules are those mentioned in this presentation.
 
 =end note
 
