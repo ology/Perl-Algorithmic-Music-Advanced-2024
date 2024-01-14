@@ -357,10 +357,10 @@ morbo groovetool.pl  # L<http://127.0.0.1:3000>
 =begin pre
 
 my $phrase = Music::Duration::Partition->new(
-  size    => 3,                   # Number of beats to render
+  size    => 3,                   # number of beats to render
   pool    => [qw(hn dqn qn en)],
-  weights => [   1, 1,  2, 2  ],  # Optional
-  groups  => [   1, 1,  1, 2  ],  # Optional
+  weights => [   1, 1,  2, 2  ],  # optional
+  groups  => [   1, 1,  1, 2  ],  # optional
 );
 
 my @motifs = $phrase->motifs(2);
