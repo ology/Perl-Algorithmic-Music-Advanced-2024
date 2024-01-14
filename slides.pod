@@ -243,8 +243,15 @@ $score->write_score('audio/example-1.mid');
 
 =begin pre
 
-> timidity -c timidity.cfg -A10a code/example-1.mid -Ow -o - \
-  | ffmpeg -i - -acodec libmp3lame -ab 64k audio/example-1.mp3
+[ 60, 62, 64, 65, 67, 69, 71 ]
+[ 'en', 'hn', 'hn', 'en', 'hn', 'qn' ]
+[ 69, 67, 64, 64, 64, 71 ]
+[ 'qn', 'dqn', 'dqn', 'qn', 'qn', 'hn' ]
+[ 69, 67, 60, 69, 67, 64 ]
+[ 'hn', 'hn', 'en', 'qn', 'dqn', 'qn' ]
+[ 64, 64, 65, 65, 64, 60 ]
+[ 'dqn', 'en', 'hn', 'qn', 'en', 'hn', 'en' ]
+[ 69, 67, 60, 67, 65, 60, 67 ]
 
 =end pre
 
