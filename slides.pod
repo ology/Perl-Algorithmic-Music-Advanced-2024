@@ -2,11 +2,7 @@
 
 G<https://ology.net/images/perl-gene.jpg> L<Gene Boggs|https://github.com/ology>
 
-=begin html
-
-<img src="flowchart.png">
-
-=end html
+G<flowchart.png>
 
 L<TPRC 2024|https://tprc.us/tprc-2024-las/> &#x2022; Las Vegas
 
