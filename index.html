@@ -144,16 +144,14 @@ For instance, the idea of phrase development itself is controversial. E.g. Brian
 <div class="slide">
 <h1>Algorithm 1 of 2
 
-</h1><p>&#x2022; Phrasing
-
-</p><pre>use MIDI::Util qw(setup_score);
+</h1><pre>use MIDI::Util qw(setup_score);
 use Music::Duration::Partition ();
 use Music::Scales qw(get_scale_MIDI);
 
 my $score = setup_score();
 
 my $mdp = Music::Duration::Partition->new(
-    size    => 8, # 2 measures in 4/4
+    size    => 4, # 1 measure in 4/4
     pool    => [qw(hn dqn qn en)],
     verbose => 1,
 );
@@ -165,11 +163,7 @@ my @pitches = get_scale_MIDI('C', 4, 'major'); </pre><div class="notes">... </di
 </h1><pre>my @motifs = $mdp->motifs(4);
 
 for my $motif (@motifs) {
-    my @notes;
-
-    for my $i (@$motif) {
-        push @notes, $pitches[ int rand @pitches ]; # select pitches!
-    }
+    my @notes = map { $pitches[ int rand @pitches ] } @$motif;
 
     $mdp->add_to_score($score, $motif, \@notes);
 }
