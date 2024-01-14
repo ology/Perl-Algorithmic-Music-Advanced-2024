@@ -116,7 +116,7 @@ For instance, the idea of phrase development itself is controversial. E.g. Brian
 
 =end note
 
-=head1 Techniques
+=head1 Techniques 1
 
 Musical Grammars
 
@@ -147,6 +147,8 @@ Randomness
 Random sequences may be created by choosing notes from a pool of possibilities
 
 =back
+
+=head1 Techniques 2
 
 Probability
 
