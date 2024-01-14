@@ -184,6 +184,7 @@ Based on genetic algorithms using mutation and natural selection
 
 =begin pre
 
+use Data::Dumper::Compact qw(ddc);
 use MIDI::Util qw(setup_score);
 use Music::Duration::Partition ();
 use Music::Scales qw(get_scale_MIDI);
@@ -197,6 +198,7 @@ my $mdp = Music::Duration::Partition->new(
 );
 
 my @pitches = get_scale_MIDI('C', 4, 'major');
+print ddc \@pitches;
 
 =end pre
 
@@ -214,6 +216,9 @@ my @motifs = $mdp->motifs(4);
 
 for my $motif (@motifs) {
     my @notes = map { $pitches[ int rand @pitches ] } @$motif;
+
+    print ddc $motif;
+    print ddc \@notes;
 
     $mdp->add_to_score($score, $motif, \@notes);
 }
