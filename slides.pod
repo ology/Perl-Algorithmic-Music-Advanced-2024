@@ -315,7 +315,9 @@ $score->write_score('audio/example-2.mid');
 =begin html
 
 <p></p>
-<audio controls><source type="audio/mp3" src="audio/example-2.mp3"></audio>
+<audio controls><source type="audio/mp3" src="audio/example-2-1.mp3"></audio>
+<p></p>
+<audio controls><source type="audio/mp3" src="audio/example-2-2.mp3"></audio>
 <p></p>
 
 =end html
