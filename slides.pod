@@ -180,21 +180,13 @@ Based on genetic algorithms using mutation and natural selection
 
 =back
 
-=head1 Basic Algorithms 1 of 2
+=head1 Algorithm 1 of 2
 
 &#x2022; B<Setup, Sync, & Write>
 
 =begin pre
 
-my $d = MIDI::Drummer::Tiny->new(
-  file => 'drums.mid',
-  bpm  => 100,
-  bars => 8,
-);
-
-# See 2 of 2
-
-$d->write;
+...
 
 =end pre
 
@@ -204,25 +196,11 @@ $d->write;
 
 =end note
 
-=head1 Basic Algorithms 2 of 2
+=head1 Algorithm 2 of 2
 
 =begin pre
 
-sub bass {
-  my ($score) = @_;
-
-  for my $note (qw(C3 E3 C3 G3)) {  # <- Static notes
-    $score->n('wn', $note);
-  }
-}
-
-sub treble {
-  my ($score) = @_;
-
-  for my $note (qw(E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E4 D4 D4)) {
-    $score->n('qn', $note);
-  }
-}
+...
 
 =end pre
 
