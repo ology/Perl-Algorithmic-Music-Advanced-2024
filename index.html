@@ -195,7 +195,7 @@ $score->write_score('audio/example-1.mid'); </pre><div class="notes">... </div><
 </h1><pre>use MIDI::Util qw(setup_score);
 use Music::Duration::Partition ();
 use Music::Scales qw(get_scale_MIDI);
-use Music::VoiceGen ();
+use Music::VoiceGen ();               # &lt;- new module
 
 my $score = setup_score();
 
