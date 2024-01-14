@@ -166,7 +166,7 @@ Stochastic processes
 
 =item *
 
-Described by a probability distribution
+Described by a probability distributions
 
 =back
 
