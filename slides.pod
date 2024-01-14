@@ -243,6 +243,7 @@ $score->write_score('audio/example-1.mid');
 
 =begin pre
 
+
 [ 60, 62, 64, 65, 67, 69, 71 ]
 [ 'qn', 'hn', 'hn', 'hn', 'qn' ]
 [ 60, 60, 69, 69, 67 ]
