@@ -243,7 +243,7 @@ $score->write_score('masterpiece.mid');
 
 =begin pre
 
-> timidity -c timidity.cfg -A10a code/example-1.pl.mid -Ow -o - \
+> timidity -c timidity.cfg -A10a code/example-1.mid -Ow -o - \
   | ffmpeg -i - -acodec libmp3lame -ab 64k audio/example-1.mp3
 
 =end pre
