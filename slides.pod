@@ -222,7 +222,7 @@ for my $motif (@motifs) {
     $mdp->add_to_score($score, $motif, \@notes);
 }
 
-$score->write_score('masterpiece.mid');
+$score->write_score('audio/example-1.mid');
 
 =end pre
 
