@@ -22,12 +22,12 @@ print ddc \@pitches;
 my @motifs = $mdp->motifs(4);
 
 for my $motif (@motifs) {
-    my @notes = map { $pitches[ int rand @pitches ] } @$motif;
+    my @voices = map { $pitches[ int rand @pitches ] } @$motif;
 
     print ddc $motif;
-    print ddc \@notes;
+    print ddc \@voices;
 
-    $mdp->add_to_score($score, $motif, \@notes);
+    $mdp->add_to_score($score, $motif, \@voices);
 }
 
 $score->write_score('audio/example-1.mid');
