@@ -16,10 +16,10 @@ my $mdp = Music::Duration::Partition->new(
     pool => [qw(hn dqn qn en)],
 );
 
+my @motifs = $mdp->motifs(4);
+
 my @pitches = get_scale_MIDI('C', 4, 'major');
 print ddc \@pitches;
-
-my @motifs = $mdp->motifs(4);
 
 for my $motif (@motifs) {
     my @voices = map { $pitches[ int rand @pitches ] } @$motif;
