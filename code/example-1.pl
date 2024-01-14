@@ -12,7 +12,7 @@ use Music::Scales qw(get_scale_MIDI);
 my $score = setup_score();
 
 my $mdp = Music::Duration::Partition->new(
-    size => 4, # number of quarter-note beats
+    size => 8, # number of quarter-note beats (2 measures)
     pool => [qw(hn dqn qn en)],
 );
 
