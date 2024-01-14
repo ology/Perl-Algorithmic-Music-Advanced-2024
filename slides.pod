@@ -215,8 +215,9 @@ my @motifs = $mdp->motifs(4);
 for my $motif (@motifs) {
     my @notes;
 
+    # select pitches! 
     for my $i (@$motif) {
-        push @notes, $pitches[ int rand @pitches ]; # select pitches!
+        push @notes, $pitches[ int rand @pitches ];
     }
 
     $mdp->add_to_score($score, $motif, \@notes);
