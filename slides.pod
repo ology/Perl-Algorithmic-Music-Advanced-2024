@@ -277,6 +277,7 @@ my $mdp = Music::Duration::Partition->new(
     size => 8, # number of quarter-note beats (2 measures)
     pool => [qw(hn dqn qn en)],
 );
+
 my @motifs = $mdp->motifs(4);
 
 =end pre
@@ -293,6 +294,7 @@ my @motifs = $mdp->motifs(4);
 
 my @pitches = (get_scale_MIDI('C', 4, 'major'),
                get_scale_MIDI('C', 5, 'major'));
+
 my $voice = Music::VoiceGen->new(
     pitches   => \@pitches,
     intervals => [qw(-3 -2 -1 1 2 3)],
@@ -300,6 +302,7 @@ my $voice = Music::VoiceGen->new(
 
 for my $motif (@motifs) {
     my @voices = map { $voice->rand } @$motif;
+
     $mdp->add_to_score($score, $motif, \@voices);
 }
 
