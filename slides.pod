@@ -1,8 +1,6 @@
 =head1 Advanced Algorithmic Music with Perl
 
-G<https://ology.net/images/perl-gene.jpg>
-
-L<Gene Boggs|https://github.com/ology>
+G<https://ology.net/images/perl-gene.jpg> L<Gene Boggs|https://github.com/ology>
 
 G<flowchart.png>
 
