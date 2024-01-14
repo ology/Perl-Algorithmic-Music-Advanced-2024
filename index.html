@@ -134,7 +134,7 @@ For instance, the idea of phrase development itself is controversial. E.g. Brian
 
 </p></li></ul class="incremental"><p>Stochastic processes
 
-</p><ul class="incremental"><li level="1"><p>Described by a probability distributions
+</p><ul class="incremental"><li level="1"><p>Described by a probability distribution
 
 </p></li></ul class="incremental"><p>Evolutionary methods
 
@@ -203,12 +203,14 @@ my $mdp = Music::Duration::Partition->new(
     size => 8, # number of quarter-note beats (2 measures)
     pool => [qw(hn dqn qn en)],
 );
+
 my @motifs = $mdp->motifs(4); </pre><div class="notes">... </div></div>
 <div class="slide">
 <h1>Algorithm 2 of 2
 
 </h1><pre>my @pitches = (get_scale_MIDI('C', 4, 'major'),
                get_scale_MIDI('C', 5, 'major'));
+
 my $voice = Music::VoiceGen->new(
     pitches   => \@pitches,
     intervals => [qw(-3 -2 -1 1 2 3)],
@@ -216,6 +218,7 @@ my $voice = Music::VoiceGen->new(
 
 for my $motif (@motifs) {
     my @voices = map { $voice->rand } @$motif;
+
     $mdp->add_to_score($score, $motif, \@voices);
 }
 
