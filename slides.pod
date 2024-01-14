@@ -192,9 +192,8 @@ use Music::Scales qw(get_scale_MIDI);
 my $score = setup_score();
 
 my $mdp = Music::Duration::Partition->new(
-    size    => 4, # number of quarter-note beats
-    pool    => [qw(hn dqn qn en)],
-    verbose => 1,
+    size => 8, # number of quarter-note beats (2 measures)
+    pool => [qw(hn dqn qn en)],
 );
 
 my @pitches = get_scale_MIDI('C', 4, 'major');
