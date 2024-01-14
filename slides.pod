@@ -354,8 +354,6 @@ morbo groovetool.pl  # L<http://127.0.0.1:3000>
 
 =head1 Figured Bass Part 1 of 3
 
-&#x2022; B<Phrase generator for rhythmic motifs>
-
 =begin pre
 
 my $phrase = Music::Duration::Partition->new(
