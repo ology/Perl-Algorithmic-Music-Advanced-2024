@@ -24,7 +24,7 @@ my @pitches = (get_scale_MIDI('C', 4, 'major'),
 
 my $voice = Music::VoiceGen->new(
     pitches   => \@pitches,
-    intervals => [qw(-3 -2 -1 1 2 3)],
+    intervals => [qw(-3 -2 -1 1 2 3)], # allowed interval jumps
 );
 
 for my $motif (@motifs) {
