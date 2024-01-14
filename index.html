@@ -144,7 +144,8 @@ For instance, the idea of phrase development itself is controversial. E.g. Brian
 <div class="slide">
 <h1>Algorithm 1 of 2
 
-</h1><pre>use MIDI::Util qw(setup_score);
+</h1><pre>use Data::Dumper::Compact qw(ddc);
+use MIDI::Util qw(setup_score);
 use Music::Duration::Partition ();
 use Music::Scales qw(get_scale_MIDI);
 
@@ -156,7 +157,8 @@ my $mdp = Music::Duration::Partition->new(
     verbose => 1,
 );
 
-my @pitches = get_scale_MIDI('C', 4, 'major'); </pre><div class="notes">... </div></div>
+my @pitches = get_scale_MIDI('C', 4, 'major');
+print ddc \@pitches; </pre><div class="notes">... </div></div>
 <div class="slide">
 <h1>Algorithm 2 of 2
 
@@ -164,6 +166,9 @@ my @pitches = get_scale_MIDI('C', 4, 'major'); </pre><div class="notes">... </di
 
 for my $motif (@motifs) {
     my @notes = map { $pitches[ int rand @pitches ] } @$motif;
+
+    print ddc $motif;
+    print ddc \@notes;
 
     $mdp->add_to_score($score, $motif, \@notes);
 }
