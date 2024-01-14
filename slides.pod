@@ -238,11 +238,11 @@ $score->write_score('audio/example-1.mid');
 
 <p></p>
 <audio controls><source type="audio/mp3" src="audio/example-1.mp3"></audio>
+<p></p>
 
 =end html
 
 =begin pre
-
 
 [ 60, 62, 64, 65, 67, 69, 71 ]
 [ 'qn', 'hn', 'hn', 'hn', 'qn' ]
