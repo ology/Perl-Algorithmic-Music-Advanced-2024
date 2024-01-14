@@ -182,11 +182,23 @@ Based on genetic algorithms using mutation and natural selection
 
 =head1 Algorithm 1 of 2
 
-&#x2022; B<Setup, Sync, & Write>
+&#x2022; Phrasing
 
 =begin pre
 
-...
+use MIDI::Util qw(setup_score);
+use Music::Duration::Partition ();
+use Music::Scales qw(get_scale_MIDI);
+
+my $score = setup_score();
+
+my $mdp = Music::Duration::Partition->new(
+    size    => 8, # 2 measures in 4/4
+    pool    => [qw(hn dqn qn en)],
+    verbose => 1,
+);
+
+my @pitches = get_scale_MIDI('C', 4, 'major');
 
 =end pre
 
@@ -200,7 +212,19 @@ Based on genetic algorithms using mutation and natural selection
 
 =begin pre
 
-...
+my @motifs = $mdp->motifs(4);
+
+for my $motif (@motifs) {
+    my @notes;
+
+    for my $i (@$motif) {
+        push @notes, $pitches[ int rand @pitches ]; # select pitches!
+    }
+
+    $mdp->add_to_score($score, $motif, \@notes);
+}
+
+$score->write_score('masterpiece.mid');
 
 =end pre
 
