@@ -245,13 +245,11 @@ $score->write_score('audio/example-2.mid'); </pre><div class="notes">... </div><
 <div class="slide">
 <h1>Figured Bass Part 1 of 3
 
-</h1><p>&#x2022; <b>Phrase generator for rhythmic motifs</b>
-
-</p><pre>my $phrase = Music::Duration::Partition->new(
-  size    => 3,                   # Number of beats to render
+</h1><pre>my $phrase = Music::Duration::Partition->new(
+  size    => 3,                   # number of beats to render
   pool    => [qw(hn dqn qn en)],
-  weights => [   1, 1,  2, 2  ],  # Optional
-  groups  => [   1, 1,  1, 2  ],  # Optional
+  weights => [   1, 1,  2, 2  ],  # optional
+  groups  => [   1, 1,  1, 2  ],  # optional
 );
 
 my @motifs = $phrase->motifs(2); </pre><div class="notes">... </div></div>
@@ -262,7 +260,7 @@ my @motifs = $phrase->motifs(2); </pre><div class="notes">... </div></div>
 
 my $voice = Music::VoiceGen->new(
   pitches   => \@pitches,
-  intervals => [qw/-4 -3 -2 2 3 4/],  # Allowed interval jumps
+  intervals => [qw/-4 -3 -2 2 3 4/],  # allowed interval jumps
 );
 
 # main phrase voices
