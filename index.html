@@ -142,145 +142,23 @@ For instance, the idea of phrase development itself is controversial. E.g. Brian
 
 </p></li></ul class="incremental"></div>
 <div class="slide">
-<h1>Basic Algorithms 1 of 2
+<h1>Algorithm 1 of 2
 
 </h1><p>&#x2022; <b>Setup, Sync, & Write</b>
 
-</p><pre>use MIDI::Util qw(setup_score);
-
-my $score = setup_score();  # Default piano, volume, bpm, etc
-
-$score->synch(
-  sub { bass($score) },
-  sub { treble($score) },
-);
-
-$score->write_score("$0.mid"); </pre><div class="notes">... </div></div>
+</p><pre>... </pre><div class="notes">... </div></div>
 <div class="slide">
-<h1>Basic Algorithms 2 of 2
+<h1>Algorithm 2 of 2
 
-</h1><pre>sub bass {
-  my ($score) = @_;
-
-  for my $note (qw(C3 E3 C3 G3)) {  # &lt;- Static notes
-    $score->n('wn', $note);
-  }
-}
-
-sub treble {
-  my ($score) = @_;
-
-  for my $note (qw(E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E4 D4 D4)) {
-    $score->n('qn', $note);
-  }
-} </pre><div class="notes">... </div></div>
+</h1><pre>... </pre><div class="notes">... </div></div>
 <div class="slide">
 <h1>Audio Example 1
 
 </h1><p></p>
-<audio controls><source type="audio/mp3" src="audio/1-otj.mp3"></audio>
+<audio controls><source type="audio/mp3" src="audio/example-1.mp3"></audio>
 
-<pre>> timidity -c timidity.cfg -A10a code/2-random.pl.mid -Ow -o - \
-  | ffmpeg -i - -acodec libmp3lame -ab 64k audio/2-random.mp3 </pre><div class="notes">... </div></div>
-<div class="slide">
-<h1>Basic Algorithms 1 of 3
-
-</h1><p>&#x2022; <b>Use random pitches instead of static</b>
-
-</p><pre>use MIDI::Util qw(setup_score set_chan_patch); # New import
-use Music::Scales qw(get_scale_MIDI);          # New module
-
-my $score = setup_score(bpm => 120);           # New arg
-
-$score->synch(
-  sub { bass($score) },
-  sub { treble($score) },
-) for 1 .. 4;                                  # Loop
-
-$score->write_score("$0.mid"); </pre><div class="notes">... </div></div>
-<div class="slide">
-<h1>Basic Algorithms 2 of 3
-
-</h1><pre>sub bass {
-  my ($score) = @_;
-
-  set_chan_patch($score, 0, 35);       # Fretless on channel 0
-
-  my @pitches = get_scale_MIDI('C', 2, 'pentatonic');
-
-  for my $n (1 .. 4) {
-    my $pitch = $pitches[int rand @pitches];  # Random pitch
-    $score->n('hn', $pitch);                  # Add note to score
-  }
-} </pre><div class="notes">... </div></div>
-<div class="slide">
-<h1>Basic Algorithms 3 of 3
-
-</h1><pre>sub treble {
-  my ($score) = @_;
-
-  set_chan_patch($score, 1, 0);        # Piano on ch 1
-
-  my @pitches = (
-    get_scale_MIDI('C', 4, 'major'),
-    get_scale_MIDI('C', 5, 'major'),   # &lt;- 2 octaves
-  );
-
-  for my $n (1 .. 4) {
-    my $pitch = $pitches[int rand @pitches];
-    $score->n('qn', $pitch);
-  }
-} </pre><div class="notes">... </div></div>
-<div class="slide">
-<h1>Audio Example 2
-
-</h1><p></p>
-<audio controls><source type="audio/mp3" src="audio/2-random.mp3"></audio>
-
-<div class="notes">... </div></div>
-<div class="slide">
-<h1>Basic Algorithms 1 of 2
-
-</h1><p>&#x2022; <b>Play a list of named chords held for a whole note each</b>
-
-</p><pre>use MIDI::Util qw(setup_score midi_format);  # New import
-use Music::Scales qw(get_scale_MIDI);
-use Music::Chord::Note ();                   # New module
-
-my $score = setup_score();
-
-$score->synch(
-  sub { chords($score) },
-  #sub { treble($score) },                   # YMMV!
-);
-
-$score->write_score("$0.mid"); </pre><div class="notes">... </div></div>
-<div class="slide">
-<h1>Basic Algorithms 2 of 2
-
-</h1><pre>sub chords {
-  my ($score) = @_;
-
-  my $mcn = Music::Chord::Note->new;
-
-  for my $named (qw(Cm7 F7 BbM7 EbM7 Adim7 D7 Gm)) {
-    my @chord = $mcn->chord_with_octave($named, 4);
-
-    @chord = midi_format(@chord);
-    # [ C4 Ds4 G4 As4 ], ... [ G4 As4 D5 ], etc.
-
-    $score->n('wn', @chord);
-  }
-} </pre><div class="notes">... </div></div>
-<div class="slide">
-<h1>Audio Example 3
-
-</h1><p></p>
-<audio controls><source type="audio/mp3" src="audio/3-chords-1.mp3"></audio>
-<p></p>
-<audio controls><source type="audio/mp3" src="audio/3-chords-2.mp3"></audio>
-
-<div class="notes">... </div></div>
+<pre>> timidity -c timidity.cfg -A10a code/example-1.pl.mid -Ow -o - \
+  | ffmpeg -i - -acodec libmp3lame -ab 64k audio/example-1.mp3 </pre><div class="notes">... </div></div>
 <div class="slide">
 <h1>Groove-Tool
 
