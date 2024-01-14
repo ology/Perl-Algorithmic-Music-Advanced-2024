@@ -30,5 +30,5 @@ for my $motif (@motifs) {
     $mdp->add_to_score($score, $motif, \@notes);
 }
 
-$score->write_score('code/example-1.mid');
+$score->write_score('audio/example-1.mid');
 
