@@ -12,9 +12,8 @@ use Music::Scales qw(get_scale_MIDI);
 my $score = setup_score();
 
 my $mdp = Music::Duration::Partition->new(
-    size    => 4, # 1 measure in 4/4
-    pool    => [qw(hn dqn qn en)],
-    verbose => 1,
+    size => 4, # 1 measure in 4/4
+    pool => [qw(hn dqn qn en)],
 );
 
 my @pitches = get_scale_MIDI('C', 4, 'major');
