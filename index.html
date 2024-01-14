@@ -243,7 +243,7 @@ $score->write_score('audio/example-2.mid'); </pre><div class="notes">... </div><
 
 </p></li></ul class="incremental"><div class="notes">... </div></div>
 <div class="slide">
-<h1>Figured Bass Part 1 of 2
+<h1>Figured Bass Part 1 of 3
 
 </h1><p>&#x2022; <b>Phrase generator for rhythmic motifs</b>
 
@@ -256,7 +256,7 @@ $score->write_score('audio/example-2.mid'); </pre><div class="notes">... </div><
 
 my @motifs = $phrase->motifs(2); </pre><div class="notes">... </div></div>
 <div class="slide">
-<h1>Figured Bass Part 2 of 2
+<h1>Figured Bass Part 2 of 3
 
 </h1><pre>my @pitches = get_scale_MIDI($note, $octave, $scale);
 
@@ -266,11 +266,22 @@ my $voice = Music::VoiceGen->new(
 );
 
 # main phrase voices
-my @voices1 = map { $voice->rand } $motifs[0]->@*;
+my @voices1 = map { $voice->rand } $motifs[0]->@*; </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Figured Bass Part 3 of 3
 
-# ... more code ...
+</h1><pre>for my $i (1 .. $bars) {
+    if ($i % 2) {
+        $mdp->add_to_score($self->drummer->score, $motifs[0], \@notes1);
+    }
+    else {
+        my @notes2 = map { $voice->rand } $motifs[1]->@*;
 
-my @voices2 = map { $voice->rand } $motifs[1]->@*; </pre><div class="notes">Music::VoiceGen module by Jeremy Mates (AKA thrig) - I know you're out there! </div></div>
+        $mdp->add_to_score($self->drummer->score, $motifs[1], \@notes2);
+    }
+
+    $self->drummer->rest($self->drummer->quarter);
+} </pre><div class="notes">... </div></div>
 <div class="slide">
 <h1>Links
 
