@@ -4,9 +4,7 @@ G<https://ology.net/images/perl-gene.jpg> L<Gene Boggs|https://github.com/ology>
 
 =begin html
 
-<audio controls><source type="audio/mp3" src="audio/Eno-2_2.mp3"></audio>
-<br>
-<span style="font-size: medium;"><a href="http://en.wikipedia.org/wiki/Brian+Eno">Brian Eno</a> - excerpt from "Music For Airports"</span>
+<img src="flowchart.png">
 
 =end html
 
