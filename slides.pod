@@ -214,12 +214,12 @@ print ddc \@pitches;
 my @motifs = $mdp->motifs(4);
 
 for my $motif (@motifs) {
-    my @notes = map { $pitches[ int rand @pitches ] } @$motif;
+    my @voices = map { $pitches[ int rand @pitches ] } @$motif;
 
     print ddc $motif;
-    print ddc \@notes;
+    print ddc \@voices;
 
-    $mdp->add_to_score($score, $motif, \@notes);
+    $mdp->add_to_score($score, $motif, \@voices);
 }
 
 $score->write_score('audio/example-1.mid');
@@ -253,6 +253,57 @@ $score->write_score('audio/example-1.mid');
   [ 67, 71, 67, 62, 67, 65, 64 ]
 4 [ 'en', 'en', 'en', 'en', 'en', 'en', 'dqn', 'dqn', 'qn', 'en', 'en' ]
   [ 62, 60, 67, 64, 71, 71, 67, 67, 60, 62, 71 ]
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Algorithm 1 of 2
+
+=begin pre
+
+use MIDI::Util qw(setup_score);
+use Music::Duration::Partition ();
+use Music::Scales qw(get_scale_MIDI);
+use Music::VoiceGen ();
+
+my $score = setup_score();
+
+my $mdp = Music::Duration::Partition->new(
+    size => 8, # number of quarter-note beats (2 measures)
+    pool => [qw(hn dqn qn en)],
+);
+my @motifs = $mdp->motifs(4);
+
+=end pre
+
+=begin note
+
+...
+
+=end note
+
+=head1 Algorithm 2 of 2
+
+=begin pre
+
+my @pitches = (get_scale_MIDI('C', 4, 'major'),
+               get_scale_MIDI('C', 5, 'major'));
+my $voice = Music::VoiceGen->new(
+    pitches   => \@pitches,
+    intervals => [qw(-3 -2 -1 1 2 3)],
+);
+
+for my $motif (@motifs) {
+    my @voices = map { $voice->rand } @$motif;
+    $mdp->add_to_score($score, $motif, \@voices);
+}
+
+$score->write_score('audio/example-2.mid');
 
 =end pre
 
