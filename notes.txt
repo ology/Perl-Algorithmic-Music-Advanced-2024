@@ -23,6 +23,7 @@ Or:
 
 > pod2s5 slides.pod --name "https://ology.github.io/Perl-Algorithmic-Music-Advanced-2024/" --creation "June 27, 2024" --where "Las Vegas, NV" --company "Gene Boggs" --author "Gene Boggs" --dest '.' > /dev/null 2>&1
 
+# For example:
 > rm -f code/1-otj.pl.mid ; perl code/1-otj.pl
 > rm -f audio/1-otj.mp3 ; timidity -c timidity.cfg -A10a code/1-otj.pl.mid -Ow -o - | ffmpeg -i - -acodec libmp3lame -ab 64k audio/1-otj.mp3
 
