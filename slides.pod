@@ -70,7 +70,7 @@ Kittens!
 
 =head1 Sorry!
 
-G<https://placekitten.com/500/500>
+G<https://placekitten.com/500/500?image=1>
 
 =begin note
 
