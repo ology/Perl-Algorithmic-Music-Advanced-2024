@@ -241,10 +241,10 @@ $score->write_score('audio/example-2.mid'); </pre><div class="notes">... </div><
 <h1>Figured Bass Part 1 of 3
 
 </h1><pre>my $phrase = Music::Duration::Partition->new(
-  size    => 3,                   # number of beats to render
-  pool    => [qw(hn dqn qn en)],
-  weights => [   1, 1,  2, 2  ],  # optional
-  groups  => [   1, 1,  1, 2  ],  # optional
+    size    => 3,                   # number of beats to render
+    pool    => [qw(hn dqn qn en)],
+    weights => [   1, 1,  2, 2  ],  # optional
+    groups  => [   1, 1,  1, 2  ],  # optional
 );
 
 my @motifs = $phrase->motifs(2); </pre><div class="notes">... </div></div>
@@ -254,8 +254,8 @@ my @motifs = $phrase->motifs(2); </pre><div class="notes">... </div></div>
 </h1><pre>my @pitches = get_scale_MIDI($note, $octave, $scale);
 
 my $voice = Music::VoiceGen->new(
-  pitches   => \@pitches,
-  intervals => [qw/-4 -3 -2 2 3 4/],  # allowed interval jumps
+    pitches   => \@pitches,
+    intervals => [qw/-4 -3 -2 2 3 4/],  # allowed interval jumps
 );
 
 # main phrase voices
@@ -275,6 +275,21 @@ my @voices1 = map { $voice->rand } $motifs[0]->@*; </pre><div class="notes">... 
 
     $self->drummer->rest($self->drummer->quarter);
 } </pre><div class="notes">... </div></div>
+<div class="slide">
+<h1>Application: Games
+
+</h1><pre>my $mdp = Music::Duration::Partition->new(
+    size => 4,
+    pool => [qw(qn en sn)],
+);
+my @motifs = $mdp->motifs(16);
+my @voices;
+for my $motif (@motifs) {
+    push @voices, [ map { $voice->rand } @$motif ];
+}
+
+$mdp->add_to_score($d->score, $motifs[7], $voices[7])
+    if $action == $saving_throw; </pre><div class="notes">*Not* "interactive" - Remember that this talk is about rendering static MIDI files. So *you* have to figure out the "interactive" bit! </div></div>
 <div class="slide">
 <h1>Links
 
