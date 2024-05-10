@@ -420,15 +420,8 @@ for my $i (1 .. $bars) {
 
 =begin pre
 
-my $mdp = Music::Duration::Partition->new(
-    size => 4,
-    pool => [qw(qn en sn)],
-);
 my @motifs = $mdp->motifs(16);
-my @voices;
-for my $motif (@motifs) {
-    push @voices, [ map { $voice->rand } @$motif ];
-}
+my @voices = map { [ map { $voice->rand } @$_ ] } @motifs;
 
 $mdp->add_to_score($d->score, $motifs[7], $voices[7])
     if $action == $saving_throw;
