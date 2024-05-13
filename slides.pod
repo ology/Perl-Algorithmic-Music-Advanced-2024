@@ -412,11 +412,21 @@ for my $i (1 .. $bars) {
 
 =begin pre
 
-my @motifs = $mdp->motifs(16);
-my @voices = map { [ map { $voice->rand } @$_ ] } @motifs;
+use MIDI::RtMidi::FFI::Device;
 
-$mdp->add_to_score($d->score, $motifs[7], $voices[7])
-    if $action == $saving_throw;
+my $events = MIDI::Score::score_r_to_events_r($score->{Score});
+
+my $device = RtMidiOut->new;
+$device->open_virtual_port($opt{virtual});
+$device->open_port_by_name($opt{name Fix option name});
+
+for my $event (@$events) {
+    if ($event->[0] =~ /^(note_\w+)$/) {
+        my $op = $1;
+        $device->send_event($op => @{ $event }[ 2 .. 4 ]);
+        sleep 1 if $op eq 'note_on';
+    }
+}
 
 =end pre
 
