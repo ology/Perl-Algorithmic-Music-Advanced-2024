@@ -4,7 +4,7 @@ G<qr-advanced.png>
 
 =begin note
 
-If you want to follow along or reread what just happened, these slides are live at the link on the bottom of the pages.
+...
 
 =end note
 
@@ -14,7 +14,7 @@ If you want to follow along or reread what just happened, these slides are live 
 
 =item *
 
-Writing MIDI files
+Writing MIDI files and responding to events
 
 =item *
 
@@ -43,10 +43,6 @@ Song or audio I<analysis>
 =item *
 
 I<Real-time> audio or MIDI processing
-
-=item *
-
-I<Low-level> MIDI events, like note_on, note_off, or sysex messages
 
 =item *
 
