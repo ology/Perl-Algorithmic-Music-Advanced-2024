@@ -42,10 +42,6 @@ Song or audio I<analysis>
 
 =item *
 
-I<Real-time> audio or MIDI processing
-
-=item *
-
 Artificial intelligence techniques
 
 =item *
