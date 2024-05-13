@@ -55,11 +55,11 @@ img#me05 {top: 43px;left: 36px;}
 </h1><p><img src="qr-advanced.png" />
 
 
-</p><div class="notes">If you want to follow along or reread what just happened, these slides are live at the link on the bottom of the pages. </div></div>
+</p><div class="notes">... </div></div>
 <div class="slide">
 <h1>What this *is* about
 
-</h1><ul class="incremental"><li level="1"><p>Writing MIDI files
+</h1><ul class="incremental"><li level="1"><p>Writing MIDI files and responding to events
 
 </p></li><li level="1"><p>High-level, object-oriented score construction ("Audio LEGOs")
 
@@ -70,10 +70,6 @@ img#me05 {top: 43px;left: 36px;}
 <h1>What this is *not* about
 
 </h1><ul class="incremental"><li level="1"><p>Song or audio <i>analysis</i>
-
-</p></li><li level="1"><p><i>Real-time</i> audio or MIDI processing
-
-</p></li><li level="1"><p><i>Low-level</i> MIDI events, like note_on, note_off, or sysex messages
 
 </p></li><li level="1"><p>Artificial intelligence techniques
 
@@ -278,11 +274,21 @@ my @voices1 = map { $voice->rand } $motifs[0]->@*; </pre><div class="notes">... 
 <div class="slide">
 <h1>Application: Games
 
-</h1><pre>my @motifs = $mdp->motifs(16);
-my @voices = map { [ map { $voice->rand } @$_ ] } @motifs;
+</h1><pre>use MIDI::RtMidi::FFI::Device;
 
-$mdp->add_to_score($d->score, $motifs[7], $voices[7])
-    if $action == $saving_throw; </pre><div class="notes">*Not* "interactive" - Remember that this talk is about rendering static MIDI files. So *you* have to figure out the "interactive" bit! </div></div>
+my $events = MIDI::Score::score_r_to_events_r($score->{Score});
+
+my $device = RtMidiOut->new;
+$device->open_virtual_port($opt{virtual});
+$device->open_port_by_name($opt{name Fix option name});
+
+for my $event (@$events) {
+    if ($event->[0] =~ /^(note_\w+)$/) {
+        my $op = $1;
+        $device->send_event($op => @{ $event }[ 2 .. 4 ]);
+        sleep 1 if $op eq 'note_on';
+    }
+} </pre><div class="notes">... </div></div>
 <div class="slide">
 <h1>Links
 
