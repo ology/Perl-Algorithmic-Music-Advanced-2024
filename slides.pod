@@ -422,7 +422,7 @@ $mdp->add_to_score($d->score, $motifs[7], $voices[7])
 
 =begin note
 
-*Not* "interactive" - Remember that this talk is about rendering static MIDI files. So *you* have to figure out the "interactive" bit!
+...
 
 =end note
 
