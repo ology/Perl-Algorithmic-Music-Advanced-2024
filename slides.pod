@@ -412,19 +412,26 @@ for my $i (1 .. $bars) {
 
 =begin pre
 
-use MIDI::RtMidi::FFI::Device;
+use MIDI::RtMidi::FFI::Device ();
+use Time::HiRes qw(usleep);
 
-my $events = MIDI::Score::score_r_to_events_r($score->{Score});
+# Build a monster $score, then:
+
+my $millis = get_milliseconds($score);
+my $events = score2events($score);
 
 my $device = RtMidiOut->new;
-$device->open_virtual_port($opt{virtual});
-$device->open_port_by_name($opt{name Fix option name});
+$device->open_virtual_port('perl-rtmidi');
+$device->open_port_by_name('Logic Pro Virtual In');
 
-for my $event (@$events) {
-    if ($event->[0] =~ /^(note_\w+)$/) {
-        my $op = $1;
-        $device->send_event($op => @{ $event }[ 2 .. 4 ]);
-        sleep 1 if $op eq 'note_on';
+if ($monster) {
+    for my $event (@$events) {
+        my $name = $event->[0];
+        if ($name =~ /^note_\w+$/) {
+            my $useconds = $millis * $event->[1];
+            usleep($useconds) if $name eq 'note_off';
+            $device->send_event($name => @{ $event }[ 2 .. 4 ]);
+        }
     }
 }
 
