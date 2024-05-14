@@ -266,7 +266,8 @@ my @motifs = $mdp->motifs(4);
 
 =begin note
 
-...
+Music::Scales - Ben Daglish RIP
+Music::VoiceGen - Jeremy Mates A.K.A. thrig - I know you're out there!
 
 =end note
 
@@ -439,7 +440,7 @@ if ($monster) {
 
 =begin note
 
-...
+MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix
 
 =end note
 
