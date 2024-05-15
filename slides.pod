@@ -411,7 +411,7 @@ for my $i (1 .. $bars) {
 
 =head1 Application: Games 1 of 2
 
-Real-time MIDI!
+B<Real-time MIDI!>
 
 =begin pre
 
@@ -437,7 +437,7 @@ MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix
 
 =head1 Application: Games 2 of 2
 
-Respond to the event:
+B<Respond to the event:>
 
 =begin pre
 
