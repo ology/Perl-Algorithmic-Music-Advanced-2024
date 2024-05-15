@@ -275,7 +275,9 @@ my @voices1 = map { $voice->rand } $motifs[0]->@*; </pre><div class="notes">... 
 <div class="slide">
 <h1>Application: Games 1 of 2
 
-</h1><pre>use MIDI::RtMidi::FFI::Device ();
+</h1><p>Real-time MIDI!
+
+</p><pre>use MIDI::RtMidi::FFI::Device ();
 use Time::HiRes qw(usleep);
 
 # Build a monster $score, then:
@@ -289,7 +291,9 @@ $device->open_port_by_name('Logic Pro Virtual In'); </pre><div class="notes">MID
 <div class="slide">
 <h1>Application: Games 2 of 2
 
-</h1><pre>if ($monster) {
+</h1><p>Respond to the event:
+
+</p><pre>if ($monster) {
     for my $event (@$events) {
         my $name = $event->[0];
         if ($name =~ /^note_\w+$/) {
