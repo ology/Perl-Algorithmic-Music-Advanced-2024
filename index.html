@@ -273,7 +273,7 @@ my @voices1 = map { $voice->rand } $motifs[0]->@*; </pre><div class="notes">... 
     $self->drummer->rest($self->drummer->quarter);
 } </pre><div class="notes">... </div></div>
 <div class="slide">
-<h1>Application: Games
+<h1>Application: Games 1 of 2
 
 </h1><pre>use MIDI::RtMidi::FFI::Device ();
 use Time::HiRes qw(usleep);
@@ -285,9 +285,11 @@ my $events = score2events($score);
 
 my $device = RtMidiOut->new;
 $device->open_virtual_port('perl-rtmidi');
-$device->open_port_by_name('Logic Pro Virtual In');
+$device->open_port_by_name('Logic Pro Virtual In'); </pre><div class="notes">MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix </div></div>
+<div class="slide">
+<h1>Application: Games 2 of 2
 
-if ($monster) {
+</h1><pre>if ($monster) {
     for my $event (@$events) {
         my $name = $event->[0];
         if ($name =~ /^note_\w+$/) {
@@ -296,7 +298,7 @@ if ($monster) {
             $device->send_event($name => @{ $event }[ 2 .. 4 ]);
         }
     }
-} </pre><div class="notes">MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix </div></div>
+} </pre><div class="notes">... </div></div>
 <div class="slide">
 <h1>Links
 

@@ -409,7 +409,7 @@ for my $i (1 .. $bars) {
 
 =end note
 
-=head1 Application: Games
+=head1 Application: Games 1 of 2
 
 =begin pre
 
@@ -424,6 +424,18 @@ my $events = score2events($score);
 my $device = RtMidiOut->new;
 $device->open_virtual_port('perl-rtmidi');
 $device->open_port_by_name('Logic Pro Virtual In');
+
+=end pre
+
+=begin note
+
+MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix
+
+=end note
+
+=head1 Application: Games 2 of 2
+
+=begin pre
 
 if ($monster) {
     for my $event (@$events) {
@@ -440,7 +452,7 @@ if ($monster) {
 
 =begin note
 
-MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix
+...
 
 =end note
 
