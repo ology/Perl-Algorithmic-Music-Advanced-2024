@@ -411,6 +411,8 @@ for my $i (1 .. $bars) {
 
 =head1 Application: Games 1 of 2
 
+Real-time MIDI!
+
 =begin pre
 
 use MIDI::RtMidi::FFI::Device ();
@@ -434,6 +436,8 @@ MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix
 =end note
 
 =head1 Application: Games 2 of 2
+
+Respond to the event:
 
 =begin pre
 
