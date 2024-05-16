@@ -420,7 +420,7 @@ use Time::HiRes qw(usleep);
 
 # Build a monster $score, then:
 
-my $millis = get_milliseconds($score);
+my $micros = get_microseconds($score);
 my $events = score2events($score);
 
 my $device = RtMidiOut->new;
@@ -441,14 +441,13 @@ B<Respond to the event:>
 
 =begin pre
 
-if ($monster) {
-    for my $event (@$events) {
-        my $name = $event->[0];
-        if ($name =~ /^note_\w+$/) {
-            my $useconds = $millis * $event->[1];
-            usleep($useconds) if $name eq 'note_off';
-            $device->send_event($name => @{ $event }[ 2 .. 4 ]);
-        }
+sleep 1;
+for my $event (@$events) {
+    my $name = $event->[0];
+    if ($name =~ /^note_\w+$/) {
+        my $useconds = $micros * $event->[1];
+        usleep($useconds) if $name eq 'note_off';
+        $device->send_event($name => @{ $event }[ 2 .. 4 ]);
     }
 }
 

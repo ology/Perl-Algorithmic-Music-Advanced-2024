@@ -282,7 +282,7 @@ use Time::HiRes qw(usleep);
 
 # Build a monster $score, then:
 
-my $millis = get_milliseconds($score);
+my $micros = get_microseconds($score);
 my $events = score2events($score);
 
 my $device = RtMidiOut->new;
@@ -293,14 +293,13 @@ $device->open_port_by_name('Logic Pro Virtual In'); </pre><div class="notes">MID
 
 </h1><p><b>Respond to the event:</b>
 
-</p><pre>if ($monster) {
-    for my $event (@$events) {
-        my $name = $event->[0];
-        if ($name =~ /^note_\w+$/) {
-            my $useconds = $millis * $event->[1];
-            usleep($useconds) if $name eq 'note_off';
-            $device->send_event($name => @{ $event }[ 2 .. 4 ]);
-        }
+</p><pre>sleep 1;
+for my $event (@$events) {
+    my $name = $event->[0];
+    if ($name =~ /^note_\w+$/) {
+        my $useconds = $micros * $event->[1];
+        usleep($useconds) if $name eq 'note_off';
+        $device->send_event($name => @{ $event }[ 2 .. 4 ]);
     }
 } </pre><div class="notes">... </div></div>
 <div class="slide">
