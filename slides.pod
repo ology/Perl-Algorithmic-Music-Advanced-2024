@@ -96,9 +96,9 @@ How do you structure a tune?
 
 These are questions to answer if we want to follow traditional theory.
 
-But if we don't care about traditions, then anything goes. And MIDI is probably not your thing.
+But if we don't care about traditions, then anything goes.
 
-For instance, the idea of phrase development itself is controversial. E.g. Brian Eno, Primus guitar solos.
+The idea of phrase development itself is controversial.
 
 =end note
 
@@ -134,6 +134,12 @@ Random sequences can be created by choosing from a pool of possibilities
 
 =back
 
+=begin note
+
+...
+
+=end note
+
 =head1 Techniques 2 of 2
 
 Probability
@@ -165,6 +171,12 @@ Evolutionary methods
 Based on genetic algorithms using mutation and natural selection
 
 =back
+
+=begin note
+
+...
+
+=end note
 
 =head1 Algorithm 1 of 2
 
