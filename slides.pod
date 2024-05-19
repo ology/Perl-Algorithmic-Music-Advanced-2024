@@ -180,6 +180,8 @@ Based on genetic algorithms using mutation and natural selection
 
 =head1 Algorithm 1 of 2
 
+B<Rhythmic phrasing>
+
 =begin pre
 
 use Data::Dumper::Compact qw(ddc);
@@ -261,6 +263,8 @@ $score->write_score('audio/example-1.mid');
 =end note
 
 =head1 Algorithm 1 of 2
+
+B<Voicings>
 
 =begin pre
 
@@ -359,6 +363,8 @@ morbo groovetool.pl  # L<http://127.0.0.1:3000>
 
 =head1 Figured Bass Part 1 of 3
 
+B<Multiple phrases and voicings>
+
 =begin pre
 
 my $phrase = Music::Duration::Partition->new(
@@ -452,7 +458,7 @@ MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix
 
 =head1 Application: Games 2 of 2
 
-B<Respond to the event:>
+B<Respond to an event:>
 
 =begin pre
 
