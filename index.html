@@ -281,13 +281,13 @@ my @voices1 = map { $voice->rand } $motifs[0]->@*; </pre><div class="notes">... 
 <div class="slide">
 <h1>Application: Games 1 of 2
 
-</h1><p><b>Real-time MIDI!</b>
+</h1><p><b>Real-time MIDI</b>
 
 </p><pre>use MIDI::Util qw(setup_score get_microseconds score2events);
 use MIDI::RtMidi::FFI::Device ();
 use Time::HiRes qw(usleep);
 
-# Build a monster $score, then:
+# Build a monster score, then:
 
 my $micros = get_microseconds($score);
 my $events = score2events($score);
