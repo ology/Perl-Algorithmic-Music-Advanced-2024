@@ -149,7 +149,6 @@ my $mdp = Music::Duration::Partition->new(
     size => 8, # number of quarter-note beats (2 measures)
     pool => [qw(hn dqn qn en)],
 );
-
 my @motifs = $mdp->motifs(4); </pre><div class="notes">... </div></div>
 <div class="slide">
 <h1>Algorithm 2 of 2
@@ -199,7 +198,6 @@ my $mdp = Music::Duration::Partition->new(
     size => 8, # number of quarter-note beats (2 measures)
     pool => [qw(hn dqn qn en)],
 );
-
 my @motifs = $mdp->motifs(4); </pre><div class="notes">Music::Scales - Ben Daglish RIP
 Music::VoiceGen - Jeremy Mates A.K.A. thrig - I know you're out there! </div></div>
 <div class="slide">
@@ -243,7 +241,7 @@ $score->write_score('audio/example-2.mid'); </pre><div class="notes">... </div><
 <div class="slide">
 <h1>Figured Bass Part 1 of 3
 
-</h1><p><b>Multiple phrases and voicings</b>
+</h1><p><b>Multiple voicings</b>
 
 </p><pre>my $phrase = Music::Duration::Partition->new(
     size    => 3,                   # number of beats to render
