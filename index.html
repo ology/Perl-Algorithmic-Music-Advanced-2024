@@ -268,15 +268,15 @@ my @voices1 = map { $voice->rand } $motifs[0]->@*; </pre><div class="notes">... 
 
 </h1><pre>for my $i (1 .. $bars) {
     if ($i % 2) {
-        $mdp->add_to_score($self->drummer->score, $motifs[0], \@notes1);
+        $mdp->add_to_score($drummer->score, $motifs[0], \@notes1);
     }
     else {
         my @notes2 = map { $voice->rand } $motifs[1]->@*;
 
-        $mdp->add_to_score($self->drummer->score, $motifs[1], \@notes2);
+        $mdp->add_to_score($drummer->score, $motifs[1], \@notes2);
     }
 
-    $self->drummer->rest($self->drummer->quarter);
+    $drummer->rest($drummer->quarter);
 } </pre><div class="notes">... </div></div>
 <div class="slide">
 <h1>Application: Games 1 of 2
@@ -296,15 +296,16 @@ $device->open_port_by_name('Logic Pro Virtual In'); </pre><div class="notes">MID
 <div class="slide">
 <h1>Application: Games 2 of 2
 
-</h1><p><b>Respond to an event:</b>
+</h1><p><b>Respond to an event</b>
 
-</p><pre>sleep 1;
-for my $event (@$events) {
-    my $name = $event->[0];
-    if ($name =~ /^note_\w+$/) {
-        my $useconds = $micros * $event->[1];
-        usleep($useconds) if $name eq 'note_off';
-        $device->send_event($name => @{ $event }[ 2 .. 4 ]);
+</p><pre>if ($monster) {
+    for my $event (@$events) {
+        my $name = $event->[0];
+        if ($name =~ /^note_\w+$/) {
+            my $useconds = $micros * $event->[1];
+            usleep($useconds) if $name eq 'note_off';
+            $device->send_event($name => @{ $event }[ 2 .. 4 ]);
+        }
     }
 } </pre><div class="notes">... </div></div>
 <div class="slide">
