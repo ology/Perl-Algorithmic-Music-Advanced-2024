@@ -63,6 +63,8 @@ img#me05 {top: 43px;left: 36px;}
 
 </p></li><li level="1"><p>High-level, object-oriented score construction ("Audio LEGOs")
 
+</p></li><li level="1"><p>Automating theories about music
+
 </p></li><li level="1"><p>Good ol' procedural algorithms
 
 </p></li></ul class="incremental"><div class="notes">... </div></div>
@@ -96,9 +98,9 @@ img#me05 {top: 43px;left: 36px;}
 
 </p></li></ul class="incremental"><div class="notes">These are questions to answer if we want to follow traditional theory.
 
-But if we don't care about traditions, then anything goes. And MIDI is probably not your thing.
+But if we don't care about traditions, then anything goes.
 
-For instance, the idea of phrase development itself is controversial. E.g. Brian Eno, Primus guitar solos. </div></div>
+The idea of phrase development itself is controversial. </div></div>
 <div class="slide">
 <h1>Techniques 1 of 2
 
@@ -114,7 +116,7 @@ For instance, the idea of phrase development itself is controversial. E.g. Brian
 
 </p><ul class="incremental"><li level="1"><p>Random sequences can be created by choosing from a pool of possibilities
 
-</p></li></ul class="incremental"></div>
+</p></li></ul class="incremental"><div class="notes">... </div></div>
 <div class="slide">
 <h1>Techniques 2 of 2
 
@@ -130,7 +132,7 @@ For instance, the idea of phrase development itself is controversial. E.g. Brian
 
 </p><ul class="incremental"><li level="1"><p>Based on genetic algorithms using mutation and natural selection
 
-</p></li></ul class="incremental"></div>
+</p></li></ul class="incremental"><div class="notes">... </div></div>
 <div class="slide">
 <h1>Algorithm 1 of 2
 
@@ -286,7 +288,6 @@ my $micros = get_microseconds($score);
 my $events = score2events($score);
 
 my $device = RtMidiOut->new;
-$device->open_virtual_port('perl-rtmidi');
 $device->open_port_by_name('Logic Pro Virtual In'); </pre><div class="notes">MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix </div></div>
 <div class="slide">
 <h1>Application: Games 2 of 2
