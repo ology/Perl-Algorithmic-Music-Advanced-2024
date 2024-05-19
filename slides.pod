@@ -435,6 +435,7 @@ B<Real-time MIDI!>
 
 =begin pre
 
+use MIDI::Util qw(setup_score get_microseconds score2events);
 use MIDI::RtMidi::FFI::Device ();
 use Time::HiRes qw(usleep);
 
