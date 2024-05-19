@@ -410,15 +410,15 @@ my @voices1 = map { $voice->rand } $motifs[0]->@*;
 
 for my $i (1 .. $bars) {
     if ($i % 2) {
-        $mdp->add_to_score($self->drummer->score, $motifs[0], \@notes1);
+        $mdp->add_to_score($drummer->score, $motifs[0], \@notes1);
     }
     else {
         my @notes2 = map { $voice->rand } $motifs[1]->@*;
 
-        $mdp->add_to_score($self->drummer->score, $motifs[1], \@notes2);
+        $mdp->add_to_score($drummer->score, $motifs[1], \@notes2);
     }
 
-    $self->drummer->rest($self->drummer->quarter);
+    $drummer->rest($drummer->quarter);
 }
 
 =end pre
