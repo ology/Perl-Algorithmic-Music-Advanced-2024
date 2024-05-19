@@ -456,17 +456,18 @@ MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix
 
 =head1 Application: Games 2 of 2
 
-B<Respond to an event:>
+B<Respond to an event>
 
 =begin pre
 
-sleep 1;
-for my $event (@$events) {
-    my $name = $event->[0];
-    if ($name =~ /^note_\w+$/) {
-        my $useconds = $micros * $event->[1];
-        usleep($useconds) if $name eq 'note_off';
-        $device->send_event($name => @{ $event }[ 2 .. 4 ]);
+if ($monster) {
+    for my $event (@$events) {
+        my $name = $event->[0];
+        if ($name =~ /^note_\w+$/) {
+            my $useconds = $micros * $event->[1];
+            usleep($useconds) if $name eq 'note_off';
+            $device->send_event($name => @{ $event }[ 2 .. 4 ]);
+        }
     }
 }
 
