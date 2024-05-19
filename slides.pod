@@ -22,6 +22,10 @@ High-level, object-oriented score construction ("Audio LEGOs")
 
 =item *
 
+Automating theories about music
+
+=item *
+
 Good ol' procedural algorithms
 
 =back
