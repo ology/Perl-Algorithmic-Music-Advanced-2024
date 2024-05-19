@@ -195,7 +195,6 @@ my $mdp = Music::Duration::Partition->new(
     size => 8, # number of quarter-note beats (2 measures)
     pool => [qw(hn dqn qn en)],
 );
-
 my @motifs = $mdp->motifs(4);
 
 =end pre
@@ -279,7 +278,6 @@ my $mdp = Music::Duration::Partition->new(
     size => 8, # number of quarter-note beats (2 measures)
     pool => [qw(hn dqn qn en)],
 );
-
 my @motifs = $mdp->motifs(4);
 
 =end pre
@@ -363,7 +361,7 @@ morbo groovetool.pl  # L<http://127.0.0.1:3000>
 
 =head1 Figured Bass Part 1 of 3
 
-B<Multiple phrases and voicings>
+B<Multiple voicings>
 
 =begin pre
 
