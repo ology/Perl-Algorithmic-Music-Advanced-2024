@@ -136,7 +136,9 @@ The idea of phrase development itself is controversial. </div></div>
 <div class="slide">
 <h1>Algorithm 1 of 2
 
-</h1><pre>use Data::Dumper::Compact qw(ddc);
+</h1><p><b>Rhythmic phrasing</b>
+
+</p><pre>use Data::Dumper::Compact qw(ddc);
 use MIDI::Util qw(setup_score);
 use Music::Duration::Partition ();
 use Music::Scales qw(get_scale_MIDI);
@@ -184,7 +186,9 @@ $score->write_score('audio/example-1.mid'); </pre><div class="notes">... </div><
 <div class="slide">
 <h1>Algorithm 1 of 2
 
-</h1><pre>use MIDI::Util qw(setup_score);
+</h1><p><b>Voicings</b>
+
+</p><pre>use MIDI::Util qw(setup_score);
 use Music::Duration::Partition ();
 use Music::Scales qw(get_scale_MIDI);
 use Music::VoiceGen ();               # &lt;- new module
@@ -239,7 +243,9 @@ $score->write_score('audio/example-2.mid'); </pre><div class="notes">... </div><
 <div class="slide">
 <h1>Figured Bass Part 1 of 3
 
-</h1><pre>my $phrase = Music::Duration::Partition->new(
+</h1><p><b>Multiple phrases and voicings</b>
+
+</p><pre>my $phrase = Music::Duration::Partition->new(
     size    => 3,                   # number of beats to render
     pool    => [qw(hn dqn qn en)],
     weights => [   1, 1,  2, 2  ],  # optional
@@ -292,7 +298,7 @@ $device->open_port_by_name('Logic Pro Virtual In'); </pre><div class="notes">MID
 <div class="slide">
 <h1>Application: Games 2 of 2
 
-</h1><p><b>Respond to the event:</b>
+</h1><p><b>Respond to an event:</b>
 
 </p><pre>sleep 1;
 for my $event (@$events) {
