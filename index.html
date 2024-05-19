@@ -292,7 +292,7 @@ my $micros = get_microseconds($score);
 my $events = score2events($score);
 
 my $device = RtMidiOut->new;
-$device->open_port_by_name('Logic Pro Virtual In'); </pre><div class="notes">MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix </div></div>
+$device->open_port_by_name(qr/wavetable/i); </pre><div class="notes">MIDI::RtMidi::FFI : John Barrett A.K.A. fuzzix </div></div>
 <div class="slide">
 <h1>Application: Games 2 of 2
 
