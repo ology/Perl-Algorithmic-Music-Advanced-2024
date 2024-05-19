@@ -440,7 +440,6 @@ my $micros = get_microseconds($score);
 my $events = score2events($score);
 
 my $device = RtMidiOut->new;
-$device->open_virtual_port('perl-rtmidi');
 $device->open_port_by_name('Logic Pro Virtual In');
 
 =end pre
