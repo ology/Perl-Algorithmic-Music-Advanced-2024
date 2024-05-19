@@ -431,7 +431,7 @@ for my $i (1 .. $bars) {
 
 =head1 Application: Games 1 of 2
 
-B<Real-time MIDI!>
+B<Real-time MIDI>
 
 =begin pre
 
@@ -439,7 +439,7 @@ use MIDI::Util qw(setup_score get_microseconds score2events);
 use MIDI::RtMidi::FFI::Device ();
 use Time::HiRes qw(usleep);
 
-# Build a monster $score, then:
+# Build a monster score, then:
 
 my $micros = get_microseconds($score);
 my $events = score2events($score);
