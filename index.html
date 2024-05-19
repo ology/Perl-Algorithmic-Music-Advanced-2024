@@ -283,7 +283,8 @@ my @voices1 = map { $voice->rand } $motifs[0]->@*; </pre><div class="notes">... 
 
 </h1><p><b>Real-time MIDI!</b>
 
-</p><pre>use MIDI::RtMidi::FFI::Device ();
+</p><pre>use MIDI::Util qw(setup_score get_microseconds score2events);
+use MIDI::RtMidi::FFI::Device ();
 use Time::HiRes qw(usleep);
 
 # Build a monster $score, then:
