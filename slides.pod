@@ -413,9 +413,9 @@ for my $i (1 .. $bars) {
         $mdp->add_to_score($drummer->score, $motifs[0], \@notes1);
     }
     else {
-        my @notes2 = map { $voice->rand } $motifs[1]->@*;
+        my @voices2 = map { $voice->rand } $motifs[1]->@*;
 
-        $mdp->add_to_score($drummer->score, $motifs[1], \@notes2);
+        $mdp->add_to_score($drummer->score, $motifs[1], \@voices2);
     }
 
     $drummer->rest($drummer->quarter);
