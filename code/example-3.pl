@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util); # n.b. local author libs. comment this out unless you're me
+use if $ENV{USER} eq "gene", lib => map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util); # n.b. local author libs. comment this out unless you're me
 use MIDI::RtMidi::FFI::Device ();
 use MIDI::Util qw(setup_score score2events get_milliseconds);
 use Time::HiRes qw(usleep);
