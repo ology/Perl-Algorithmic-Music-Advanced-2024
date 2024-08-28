@@ -2,7 +2,6 @@
 use strict;
 use warnings;
 
-use if $ENV{USER} eq "gene", lib => map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util Music-Duration-Partition); # my local libraries
 
 use Data::Dumper::Compact qw(ddc);
 use MIDI::Util qw(setup_score);
